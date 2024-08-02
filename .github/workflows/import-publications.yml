@@ -35,6 +35,15 @@ jobs:
         # Note GH only provides hashFiles func in `steps.if` context, not `jobs.if` context
         if: ${{ hashFiles('publications.bib') != '' }}
         run: academic import publications.bib content/publication/ --compact
+
+        # Added by Jyoti Singh (Aug 2, 2024)
+      - name: Ensure File Changes
+        run: ls -l content/publication/
+
+      - name: Check git status
+        run: git status
+        # The code block added by Jyoti Singh ends here
+
       - name: Create Pull Request
         # Set ID for `Check outputs` stage
         id: cpr
